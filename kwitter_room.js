@@ -36,3 +36,19 @@ function addRoom(){
       
       window.location("kwitter_room.html");
 }
+
+function logout(){
+      localStorage.removeItem("room_name");
+      localStorage.removeItem("user_name");
+      window.location="kwitter.html";
+}
+
+function send(){
+      msg = document.getElementById("msg").value;
+      firebase.database().ref(room_name).push({
+            name:user_name,
+            message:msg,
+            like:0
+      });
+      document.getElementById("msg").value = "";
+}
